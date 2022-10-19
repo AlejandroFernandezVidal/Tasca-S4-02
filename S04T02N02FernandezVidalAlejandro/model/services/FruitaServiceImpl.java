@@ -1,6 +1,5 @@
 package cat.itacademy.barcelonactiva.fernandezvidal.alejandro.s04.t02.n02.S04T02N02FernandezVidalAlejandro.model.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class FruitaServiceImpl implements FruitaService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Fruita> getAllFruita() {
+	public Iterable<Fruita> getAllFruita() {
 		
 		return fruitaRepository.findAll();
 	}

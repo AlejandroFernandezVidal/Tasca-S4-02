@@ -15,6 +15,6 @@ public interface FruitaService {
 	
 	public Optional<Fruita> getOneFruita(int id);
 	
-	public List<Fruita> getAllFruita();
+	public Iterable<Fruita> getAllFruita();
 
 }
