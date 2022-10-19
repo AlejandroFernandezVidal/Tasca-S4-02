@@ -1,0 +1,16 @@
+Recursos resolución de ejercicios Sprint4 Tasca02:
+
+Nivel 1:
+
+	-https://www.bezkoder.com/spring-boot-jpa-h2-example/
+	-https://www.baeldung.com/spring-response-entity
+
+Nivel 2:
+
+	-https://amoelcodigo.com/crud-java-sprig-mysql/
+	-https://youtu.be/1BYxZCFjfyU
+
+Nivel 3:
+
+	-https://www.geeksforgeeks.org/spring-boot-crud-operations-using-mongodb/#:~:text=CRUD%20stands%20for%20Create%2C%20Read,we%20perform%20on%20persistence%20storage
+	-https://youtu.be/k5PeywcbVYc
