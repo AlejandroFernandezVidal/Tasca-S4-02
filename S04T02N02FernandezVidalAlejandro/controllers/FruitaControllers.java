@@ -50,7 +50,7 @@ public class FruitaControllers {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteFruita(@PathVariable int id) {
 		ResponseEntity<?> responseEntity;
-		if (!fruitaService.getOneFruita(id).isPresent()) {
+		if (!fruitaServiceImpl.getOneFruita(id).isPresent()) {
 			responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("La fruita amb id " + id + " no existeix.");
 		} else {
