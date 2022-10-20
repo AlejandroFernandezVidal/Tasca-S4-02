@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cat.itacademy.barcelonactiva.fernandezvidal.alejandro.s04.t02.n02.S04T02N02FernandezVidalAlejandro.model.domain.Fruita;
-import cat.itacademy.barcelonactiva.fernandezvidal.alejandro.s04.t02.n02.S04T02N02FernandezVidalAlejandro.model.services.FruitaService;
+import cat.itacademy.barcelonactiva.fernandezvidal.alejandro.s04.t02.n02.S04T02N02FernandezVidalAlejandro.model.services.FruitaServiceImpl;
 
 
 @RestController
@@ -24,22 +24,22 @@ import cat.itacademy.barcelonactiva.fernandezvidal.alejandro.s04.t02.n02.S04T02N
 public class FruitaControllers {
 
 	@Autowired
-	private FruitaService fruitaService;
+	private FruitaServiceImpl fruitaServiceImpl;
 
 	@PostMapping("/add")
 	public ResponseEntity<?> addFruita(@RequestBody Fruita fruita) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(fruitaService.addFruita(fruita));
+		return ResponseEntity.status(HttpStatus.CREATED).body(fruitaServiceImpl.addFruita(fruita));
 	}
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateFruita(@RequestBody Fruita fruita) {
 		ResponseEntity<?> responseEntity;
-		Optional<Fruita> fruitaActualizar = fruitaService.getOneFruita(fruita.getId());
+		Optional<Fruita> fruitaActualizar = fruitaServiceImpl.getOneFruita(fruita.getId());
 		if (fruitaActualizar.isPresent()) {
 			Fruita _fruita = fruitaActualizar.get();
 			_fruita.setNom(fruita.getNom());
 			_fruita.setQuantitatQuilos(fruita.getQuantitatQuilos());
-			responseEntity = ResponseEntity.status(HttpStatus.OK).body(fruitaService.updateFruita(_fruita));
+			responseEntity = ResponseEntity.status(HttpStatus.OK).body(fruitaServiceImpl.updateFruita(_fruita));
 		} else {
 			responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("La fruita amb id " + fruita.getId() + " no existeix");
@@ -54,7 +54,7 @@ public class FruitaControllers {
 			responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("La fruita amb id " + id + " no existeix.");
 		} else {
-			fruitaService.deleteFruita(id);
+			fruitaServiceImpl.deleteFruita(id);
 			responseEntity = ResponseEntity.ok("Fruita amb id " + id + " eliminada correctament.");
 		}
 		return responseEntity;
@@ -63,7 +63,7 @@ public class FruitaControllers {
 	@GetMapping("/getOne/{id}")
 	public ResponseEntity<?> getOneFruita(@PathVariable int id) {
 		ResponseEntity<?> responseEntity;
-		Optional<Fruita> fruitaBuscar = fruitaService.getOneFruita(id);
+		Optional<Fruita> fruitaBuscar = fruitaServiceImpl.getOneFruita(id);
 
 		if (!fruitaBuscar.isPresent()) {
 			responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -78,7 +78,7 @@ public class FruitaControllers {
 	public ResponseEntity<?> getAllFruita() {
 		ResponseEntity<?> responseEntity;
 		List<Fruita> fruitas = StreamSupport
-				.stream(fruitaService.getAllFruita().spliterator(),false).collect(Collectors.toList());
+				.stream(fruitaServiceImpl.getAllFruita().spliterator(),false).collect(Collectors.toList());
 		if (fruitas.isEmpty()) {
 			responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).body("La llista es buida.");
 		} else {
